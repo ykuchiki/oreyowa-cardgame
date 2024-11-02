@@ -57,3 +57,10 @@ def is_game_over():
         winner = game.player1.name if game.player2.hp <= 0 else game.player2.name
         return jsonify({"game_over": True, "winner": winner})
     return jsonify({"game_over": False})
+
+@app.route('/switch_turn', methods=['POST'])
+def switch_turn():
+    if game:
+        game.switch_turn()
+        return jsonify({"state": game.get_game_state()})
+    return jsonify({"error": "Game not started"}), 400

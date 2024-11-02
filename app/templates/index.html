@@ -4,13 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>俺たちは弱いのカードゲーム</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 </head>
 <body>
-    <h1>俺たちは弱いのカードゲーム</h1>
-    <button onclick="startGame()">ゲーム開始</button>
-    <button onclick="drawCard()">カードを引く</button>
-    <button onclick="playCard()">カードをプレイ</button>
-    <div id="game_state"></div>
+    <div class="container">
+        <h1>俺たちは弱い Kod Field</h1>
+
+        <!-- バトルエリア -->
+        <div id="battle-area">
+            <div id="player1-info" class="player-info">
+                <h2>プレイヤー1</h2>
+                <img id="player1-avatar" src="{{ url_for('static', filename='images/player1.jpg') }}" alt="Player 1" class="player-avatar">
+                <p>HP: <span id="player1-hp">20</span></p>
+                <div id="player1-hand" class="hand-container"></div>
+            </div>
+
+            <div id="turn-info" class="turn-info">
+                <span>現在のプレイヤー：</span>
+                <img id="current-turn-icon" class="player-avatar-small" src="" alt="Current Player" />
+            </div>
+
+            <!-- turn-infoの外で下に矢印画像を配置 -->
+            <img id="action-arrow" src="{{ url_for('static', filename='images/arrow.png') }}" style="visibility: hidden; position: absolute;" alt="矢印">
+
+            <div id="player2-info" class="player-info">
+                <h2>プレイヤー2</h2>
+                <img id="player2-avatar" src="{{ url_for('static', filename='images/player2.jpg') }}" alt="Player 2" class="player-avatar">
+                <p>HP: <span id="player2-hp">20</span></p>
+                <div id="player2-hand" class="hand-container"></div>
+            </div>
+        </div>
+
+        <!-- ゲーム操作ボタン -->
+        <div id="controls">
+            <button onclick="startGame()">ゲーム開始</button>
+            <button onclick="drawCard()">カードを引く</button>
+            <button onclick="playCard()">カードをプレイ</button>
+        </div>
+
+        <div id="game-state"></div>
+    </div>
 </body>
+
 </html>
